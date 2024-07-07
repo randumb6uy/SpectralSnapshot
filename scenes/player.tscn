@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyf77tv0tfpjo"]
+
+[ext_resource type="Script" path="res://scripts/Movement.gd" id="1_aut06"]
+[ext_resource type="Texture2D" uid="uid://vkgam67yqu6o" path="res://sprites/light_31.png" id="2_hufkn"]
+[ext_resource type="Script" path="res://scripts/Flashlight_rotate.gd" id="3_5mrwk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxbv4"]
+size = Vector2(51.1111, 58)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bhk2a"]
+blend_mode = 3
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="collBox" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+scale = Vector2(0.712689, 0.791877)
+shape = SubResource("RectangleShape2D_bxbv4")
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource("1_aut06")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(44, 0)
+energy = 10.0
+shadow_enabled = true
+texture = ExtResource("2_hufkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+material = SubResource("CanvasItemMaterial_bhk2a")
+position = Vector2(44, 0)
+texture = ExtResource("2_hufkn")
+
+[node name="Raygroup" type="Node2D" parent="Node2D"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(713, -257)
+
+[node name="RayCast2D2" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(771, -227)
+
+[node name="RayCast2D3" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(804, -170)
+
+[node name="RayCast2D4" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(818, -112)
+
+[node name="RayCast2D5" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(826, -53)
+
+[node name="RayCast2D6" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(826, 15)
+
+[node name="RayCast2D7" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(818, 83)
+
+[node name="RayCast2D8" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(791, 156)
+
+[node name="RayCast2D9" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(761, 215)
+
+[node name="RayCast2D10" type="RayCast2D" parent="Node2D/Raygroup"]
+position = Vector2(46, 9)
+target_position = Vector2(707, 241)
+
+[node name="Flashlight_rotate" type="Node" parent="."]
+script = ExtResource("3_5mrwk")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(0.126879, 0.126879)
+polygon = PackedVector2Array(-129, -128, 135, -128, 135, 181, 59, 84, -51, 84, -128, 189)

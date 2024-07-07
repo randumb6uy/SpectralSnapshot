@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhtghgpnillb"]
+
+[ext_resource type="Texture2D" uid="uid://d2cx6p3aqxisv" path="res://sprites/3.png" id="1_c513d"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j5iru"]
+polygon = PackedVector2Array(-24.1184, -72.1716, -23.9343, -55.9699, -56, -56, -56, 56, -23.5664, 55.7856, -23.7505, 71.9874, -72, 72, -72, -72)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l7r4o"]
+polygon = PackedVector2Array(24.1187, -55.2333, 23.7505, -71.6192, 71.9872, -71.6195, 72.1716, -23.9343, 55.2334, -23.9343, 55.2332, -55.0494)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_glyxj"]
+polygon = PackedVector2Array(55.7856, 23.9346, 72.1715, 23.9346, 72.3557, 72.3557, 24.3027, 72.7239, 24.3027, 55.9698, 56.338, 55.7857)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_c513d")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(55.2334, -24.1184, 71.9875, -23.7502, 72.1713, -71.8036, 23.7505, -71.8033, 24.1187, -55.0492, 55.2332, -55.4177)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-24.1184, -55.6016, -24.1184, -71.8034, -71.8036, -71.8031, -72.1713, 71.9877, -23.7505, 71.6192, -23.5664, 55.9697, -56.8902, 55.97, -56.3382, -55.2332)
+
+[node name="spawners" type="Node" parent="CollisionPolygon2D2"]
+
+[node name="Node2D" type="Node2D" parent="CollisionPolygon2D2/spawners"]
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D2" type="Node2D" parent="CollisionPolygon2D2/spawners"]
+position = Vector2(-156, 159)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D3" type="Node2D" parent="CollisionPolygon2D2/spawners"]
+position = Vector2(155, 164)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D4" type="Node2D" parent="CollisionPolygon2D2/spawners"]
+position = Vector2(155, -151)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D5" type="Node2D" parent="CollisionPolygon2D2/spawners"]
+position = Vector2(-163, -151)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(56.5221, 23.1982, 72.3556, 23.5664, 72.1714, 72.3559, 23.9343, 72.3558, 23.9343, 56.3381, 56.338, 56.1539)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_j5iru")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_l7r4o")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_glyxj")

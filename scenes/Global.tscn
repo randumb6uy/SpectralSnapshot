@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4xjoqasovc2v"]
+
+[ext_resource type="Script" path="res://scripts/Global.gd" id="1_crrwu"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_crrwu")
+player_speed = 150
+initial_light_brightness = 8

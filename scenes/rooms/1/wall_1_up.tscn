@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds13wedf160x5"]
+
+[ext_resource type="Texture2D" uid="uid://co4eoyqbvrnch" path="res://sprites/up_1.png" id="1_775pf"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j5iru"]
+polygon = PackedVector2Array(-23.7504, -71.9875, -23.3821, -55.7857, -56, -56, -56, 56, 56, 56, 56, -56, 24.1186, -55.7857, 24.1186, -71.8034, 72, -72, 72, 72, -72, 72, -72, -72)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_775pf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-23.5663, -71.2511, -23.3821, -55.7857, -56, -56, -56, 56, 56, 56, 56, -56, 23.9345, -55.7857, 23.9345, -71.8034, 72, -72, 72, 72, -72, 72, -72.1717, -71.6193)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_j5iru")
+
+[node name="spawners" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="spawners"]
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D2" type="Node2D" parent="spawners"]
+position = Vector2(-156, 159)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D3" type="Node2D" parent="spawners"]
+position = Vector2(155, 164)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D4" type="Node2D" parent="spawners"]
+position = Vector2(155, -151)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
+
+[node name="Node2D5" type="Node2D" parent="spawners"]
+position = Vector2(-163, -151)
+rotation = 3.14159
+scale = Vector2(5.4315, 5.4315)
