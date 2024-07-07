@@ -104,4 +104,5 @@ position = Vector2(1353, -585)
 position = Vector2(1010, 952)
 
 [node name="CharacterBody2D" parent="CanvasGroup" instance=ExtResource("1_kgo68")]
-position = Vector2(-800, 512)
+texture_filter = 1
+position = Vector2(-1204, 549)

@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyf77tv0tfpjo"]
+[gd_scene load_steps=11 format=3 uid="uid://cyf77tv0tfpjo"]
 
 [ext_resource type="Script" path="res://scripts/Movement.gd" id="1_aut06"]
 [ext_resource type="Texture2D" uid="uid://vkgam67yqu6o" path="res://sprites/light_31.png" id="2_hufkn"]
 [ext_resource type="Script" path="res://scripts/Flashlight_rotate.gd" id="3_5mrwk"]
 [ext_resource type="Texture2D" uid="uid://c12m060ga1mks" path="res://sprites/cameral.png" id="3_376cn"]
+[ext_resource type="Texture2D" uid="uid://belw16bxpkw2a" path="res://sprites/mc_head.png" id="4_eddkp"]
+[ext_resource type="Texture2D" uid="uid://cyh7eakthb4ba" path="res://sprites/hat.png" id="5_cp7wx"]
+[ext_resource type="Texture2D" uid="uid://d4hs1tnp77aui" path="res://sprites/left_leg.png" id="6_qfwu0"]
+[ext_resource type="Texture2D" uid="uid://v0jsm8lpr5ud" path="res://sprites/right_leg.png" id="7_x6yox"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2wshl"]
-radius = 75.0917
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxbv4"]
+size = Vector2(51.1111, 58)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bhk2a"]
 blend_mode = 3
@@ -16,19 +20,18 @@ blend_mode = 3
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="collBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.499999)
+position = Vector2(1, 5)
 scale = Vector2(0.712689, 0.791877)
-shape = SubResource("CircleShape2D_2wshl")
+shape = SubResource("RectangleShape2D_bxbv4")
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("1_aut06")
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(-4, 2)
 
 [node name="PointLight2D" type="PointLight2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(50, -8)
+position = Vector2(52, -9)
 energy = 10.0
 shadow_enabled = true
 texture = ExtResource("2_hufkn")
@@ -36,12 +39,11 @@ texture = ExtResource("2_hufkn")
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_bhk2a")
-position = Vector2(2, 0)
+position = Vector2(52, -9)
 texture = ExtResource("2_hufkn")
-offset = Vector2(29, -3)
 
 [node name="Raygroup" type="Node2D" parent="Node2D"]
-position = Vector2(43, -8)
+position = Vector2(8, -9)
 
 [node name="RayCast2D" type="RayCast2D" parent="Node2D/Raygroup"]
 position = Vector2(46, 9)
@@ -85,9 +87,9 @@ target_position = Vector2(707, 241)
 
 [node name="Camera" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(70, -2)
+position = Vector2(41, -1)
 rotation = 1.5708
-scale = Vector2(5.58978, 5.8247)
+scale = Vector2(2.125, 2.125)
 texture = ExtResource("3_376cn")
 
 [node name="Flashlight_rotate" type="Node" parent="."]
@@ -96,3 +98,33 @@ script = ExtResource("3_5mrwk")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(0.126879, 0.126879)
 polygon = PackedVector2Array(-129, -128, 135, -128, 135, 181, 59, 84, -51, 84, -128, 189)
+
+[node name="Hero" type="Node2D" parent="."]
+
+[node name="SkeletonContainer" type="Node2D" parent="Hero"]
+
+[node name="parts" type="Node2D" parent="Hero/SkeletonContainer"]
+
+[node name="McHead" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-123, 20)
+scale = Vector2(2.375, 2.375)
+texture = ExtResource("4_eddkp")
+
+[node name="Hat" type="Sprite2D" parent="McHead"]
+texture_filter = 1
+position = Vector2(-0.421051, -5.89474)
+scale = Vector2(1.10526, 1.10526)
+texture = ExtResource("5_cp7wx")
+
+[node name="LeftLeg" type="Sprite2D" parent="McHead"]
+texture_filter = 1
+position = Vector2(-2.10526, 5.89474)
+scale = Vector2(0.894737, 0.894737)
+texture = ExtResource("6_qfwu0")
+
+[node name="RightLeg" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-115, 35)
+scale = Vector2(2.19271, 2.19271)
+texture = ExtResource("7_x6yox")

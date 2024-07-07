@@ -15,6 +15,6 @@ func _physics_process(delta):
 		light.energy = v
 		for i in rays:
 			if i.is_colliding():
-				
+				print("Gg")
 
 
