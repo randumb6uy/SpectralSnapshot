@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b7w5y70r5hsb3"]
+
+[node name="gapDetect" type="Node"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 1000)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(0, -1000)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+target_position = Vector2(-1000, 0)
+
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+target_position = Vector2(1000, 0)

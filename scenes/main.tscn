@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://pmrpdpet506p"]
 
 [ext_resource type="PackedScene" uid="uid://cyf77tv0tfpjo" path="res://scenes/player.tscn" id="1_kgo68"]
-[ext_resource type="PackedScene" uid="uid://ds13wedf160x5" path="res://scenes/rooms/1/wall_1_up.tscn" id="2_slxeg"]
+[ext_resource type="PackedScene" uid="uid://bg4sshg6qg4o7" path="res://scenes/wall.tscn" id="3_0l7wh"]
 [ext_resource type="Texture2D" uid="uid://binohv86qwpn3" path="res://sprites/tileset_1bit.png" id="4_upc2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jg1uu"]
@@ -88,21 +88,12 @@ texture_filter = 1
 tile_set = SubResource("TileSet_xrdun")
 format = 2
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="." groups=["Holder"]]
 clip_children = 2
-
-[node name="Polygon2D" parent="CanvasGroup" instance=ExtResource("2_slxeg")]
-position = Vector2(-135, 502)
-
-[node name="Polygon2D2" parent="CanvasGroup" instance=ExtResource("2_slxeg")]
-position = Vector2(-336, -718)
-
-[node name="Polygon2D3" parent="CanvasGroup" instance=ExtResource("2_slxeg")]
-position = Vector2(1353, -585)
-
-[node name="Polygon2D4" parent="CanvasGroup" instance=ExtResource("2_slxeg")]
-position = Vector2(1010, 952)
 
 [node name="CharacterBody2D" parent="CanvasGroup" instance=ExtResource("1_kgo68")]
 texture_filter = 1
-position = Vector2(-1204, 549)
+
+[node name="StaticBody2D" parent="CanvasGroup" instance=ExtResource("3_0l7wh")]
+
+[node name="Timer" type="Timer" parent="." groups=["timer"]]

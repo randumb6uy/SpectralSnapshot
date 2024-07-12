@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb8pw4jd8nlux"]
+
+[ext_resource type="Texture2D" uid="uid://d1c8pailrub31" path="res://sprites/ladder.png" id="1_2hbyh"]
+[ext_resource type="Script" path="res://scenes/exitDoor.gd" id="1_8qjdk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m01ti"]
+size = Vector2(16, 16)
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(3.66512, 3.66512)
+script = ExtResource("1_8qjdk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2hbyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m01ti")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

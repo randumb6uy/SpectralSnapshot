@@ -5,20 +5,21 @@
 [ext_resource type="Script" path="res://scripts/Flashlight_rotate.gd" id="3_5mrwk"]
 [ext_resource type="Texture2D" uid="uid://c12m060ga1mks" path="res://sprites/cameral.png" id="3_376cn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2wshl"]
-radius = 75.0917
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lqrk"]
+size = Vector2(104.484, 79.573)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bhk2a"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s82ux"]
 blend_mode = 3
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.376016, 0.376016)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="collBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.499999)
+position = Vector2(2.65946, 7.57085)
 scale = Vector2(0.712689, 0.791877)
-shape = SubResource("CircleShape2D_2wshl")
+shape = SubResource("RectangleShape2D_5lqrk")
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("1_aut06")
@@ -28,20 +29,21 @@ position = Vector2(-4, 2)
 
 [node name="PointLight2D" type="PointLight2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(50, -8)
-energy = 10.0
+position = Vector2(27.9352, -4.65946)
+scale = Vector2(1.03452, 1.03452)
+color = Color(0.447059, 0.447059, 0.447059, 1)
+energy = 8.0
 shadow_enabled = true
 texture = ExtResource("2_hufkn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+[node name="Flash" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-material = SubResource("CanvasItemMaterial_bhk2a")
-position = Vector2(2, 0)
+material = SubResource("CanvasItemMaterial_s82ux")
+position = Vector2(33.2541, -4.65946)
 texture = ExtResource("2_hufkn")
-offset = Vector2(29, -3)
 
 [node name="Raygroup" type="Node2D" parent="Node2D"]
-position = Vector2(43, -8)
+position = Vector2(14.2834, -4.05668)
 
 [node name="RayCast2D" type="RayCast2D" parent="Node2D/Raygroup"]
 position = Vector2(46, 9)
@@ -85,9 +87,9 @@ target_position = Vector2(707, 241)
 
 [node name="Camera" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(70, -2)
+position = Vector2(43, 5)
 rotation = 1.5708
-scale = Vector2(5.58978, 5.8247)
+scale = Vector2(3.62793, 3.7804)
 texture = ExtResource("3_376cn")
 
 [node name="Flashlight_rotate" type="Node" parent="."]

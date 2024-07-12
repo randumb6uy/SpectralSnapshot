@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spectral Snapshot"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/test.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,8 @@ Global="*res://scenes/Global.tscn"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
+window/size/viewport_width=400
+window/size/viewport_height=300
 window/stretch/mode="canvas_items"
 
 [input]
@@ -61,4 +61,4 @@ fire={
 
 renderer/rendering_method="mobile"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.0392157, 0.0392157, 0.0431373, 1)
+environment/defaults/default_clear_color=Color(0.0588235, 0.0588235, 0.0588235, 1)
