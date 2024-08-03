@@ -2,8 +2,10 @@ extends Node
 
 @export var player_speed : int
 @export var initial_light_brightness : int
-
-@export var top_rooms: Array[PackedScene]
-@export var bottom_rooms: Array[PackedScene]
-@export var left_rooms:Array[PackedScene]
-@export var right_rooms:Array[PackedScene]
+var player : CharacterBody2D
+@export var enemy_speed : int 
+var rooms_pos : Array[Vector2]
+var floor = -1
+var enemy_no : int
+var is_sneaking = false
+var enemy_pool : Array[CharacterBody2D]

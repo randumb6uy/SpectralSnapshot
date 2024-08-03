@@ -1,6 +1,6 @@
 extends Node
 class_name  Walker
-
+const enemy = preload("res://scenes/enemy.tscn")
 const DIRECTIONS = [Vector2.RIGHT,Vector2.UP,Vector2.LEFT,Vector2.DOWN]
 var position = Vector2.ZERO
 var direction = Vector2.RIGHT
@@ -8,7 +8,7 @@ var borders = Rect2()
 var step_his = []
 var steps_since_turn = 0
 var rooms = []
-
+var rooms_with_enemy = []
 func _init(starting_position , new_border):
 	assert(new_border.has_point(starting_position))
 	position = starting_position
@@ -40,11 +40,11 @@ func change_dir():
 	var directions = DIRECTIONS.duplicate()
 	directions.erase(direction)
 	directions.shuffle()
-	print(direction)
 	direction = directions.pop_front()
 	while not borders.has_point(position + direction):
 		direction = directions.pop_front()
 
+	
 func place_room(position):
 	var size = Vector2(randi()%4 + 2, randi()%4 + 2)
 	var top_left_corner = (position - size/2).ceil()
@@ -56,7 +56,6 @@ func place_room(position):
 				step_his.append(new_step)
 func create_room(position,size):
 	return {position = position, size = size}
-
 func get_end_room():
 	var end_room = rooms.pop_front()
 	var start_pos = step_his.front()

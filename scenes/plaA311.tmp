@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyf77tv0tfpjo"]
+[gd_scene load_steps=8 format=3 uid="uid://cyf77tv0tfpjo"]
 
 [ext_resource type="Script" path="res://scripts/Movement.gd" id="1_aut06"]
 [ext_resource type="Texture2D" uid="uid://vkgam67yqu6o" path="res://sprites/light_31.png" id="2_hufkn"]
 [ext_resource type="Script" path="res://scripts/Flashlight_rotate.gd" id="3_5mrwk"]
 [ext_resource type="Texture2D" uid="uid://c12m060ga1mks" path="res://sprites/cameral.png" id="3_376cn"]
+[ext_resource type="Script" path="res://scenes/scoreManager.gd" id="5_we4t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lqrk"]
 size = Vector2(104.484, 79.573)
@@ -105,3 +106,6 @@ script = ExtResource("3_5mrwk")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(0.126879, 0.126879)
 polygon = PackedVector2Array(-129, -128, 135, -128, 135, 181, 59, 84, -51, 84, -128, 189)
+
+[node name="scoreManager" type="Node" parent="."]
+script = ExtResource("5_we4t7")
