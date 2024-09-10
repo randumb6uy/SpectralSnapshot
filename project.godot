@@ -13,7 +13,6 @@ config_version=5
 config/name="Spectral Snapshot"
 run/main_scene="res://scenes/test.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [autoload]
 

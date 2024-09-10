@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7xn6dwhea15d"]
+
+[ext_resource type="Script" path="res://scenes/candle_collec.gd" id="1_4lclb"]
+[ext_resource type="Texture2D" uid="uid://buswsbl70b408" path="res://sprites/charger.png" id="1_ljfe1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0xxq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fxlcn"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_csur3"]
+light_mode = 2
+
+[sub_resource type="Curve" id="Curve_l51tt"]
+_data = [Vector2(0, 0.272094), 0.0, 0.0, 0, 0, Vector2(0.249169, 0.862288), 0.0, 0.0, 0, 0, Vector2(0.513289, 0.862288), 0.0, 0.0, 0, 0, Vector2(1, 0.26816), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_4lclb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a0xxq")
+
+[node name="Charger" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_fxlcn")
+position = Vector2(0, 2)
+texture = ExtResource("1_ljfe1")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_csur3")
+position = Vector2(0, -6)
+amount = 40
+lifetime = 0.6
+speed_scale = 0.7
+lifetime_randomness = 0.63
+emission_shape = 1
+emission_sphere_radius = 3.65
+spread = 180.0
+gravity = Vector2(0, -200)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_curve = SubResource("Curve_l51tt")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
