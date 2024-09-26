@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b48hlkbb0yx37"]
+[gd_scene load_steps=29 format=3 uid="uid://b48hlkbb0yx37"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_0plvp"]
 [ext_resource type="Texture2D" uid="uid://bq2p67hmbriif" path="res://sprites/RandomLevelGenTileset.png" id="3_jy5yu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/scoreManager.gd" id="4_a0h4o"]
 [ext_resource type="Texture2D" uid="uid://bwmh6uu5gdodr" path="res://sprites/battery.png" id="4_x3dfx"]
 [ext_resource type="Texture2D" uid="uid://bnipusvx6371" path="res://sprites/batter_back.png" id="5_gl1a2"]
+[ext_resource type="Shader" path="res://scenes/ca.gdshader" id="6_2inlt"]
 [ext_resource type="Script" path="res://scenes/batter_manager.gd" id="7_elh50"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_w3od7"]
@@ -13,6 +14,8 @@ vertices = PackedVector2Array(374, -202, 202, -202, 202, -246, 374, -246, 887, -
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 9), PackedInt32Array(10, 8, 9, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 21, 22, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(30, 29, 32, 33), PackedInt32Array(33, 32, 34, 35), PackedInt32Array(35, 34, 28, 31)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-576, -576, -576, 2112, 3136, 2112, 3136, -576)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tjc36"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6hnxw"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -1325,6 +1328,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer2/Label:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer2/ColorRect:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0ecuk"]
 resource_name = "fade_in"
@@ -1404,6 +1431,33 @@ tracks/4/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_wbffv"]
+resource_name = "game_over"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer2/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_f30oo"]
 resource_name = "snap"
 length = 0.5
@@ -1426,6 +1480,7 @@ _data = {
 "RESET": SubResource("Animation_soctk"),
 "fade_in": SubResource("Animation_0ecuk"),
 "fade_out": SubResource("Animation_s8hlx"),
+"game_over": SubResource("Animation_wbffv"),
 "snap": SubResource("Animation_f30oo")
 }
 
@@ -1475,6 +1530,11 @@ _data = {
 "blink": SubResource("Animation_h28ay")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spnw8"]
+shader = ExtResource("6_2inlt")
+shader_parameter/ca_strength = 5.0
+shader_parameter/amount = 40
+
 [node name="world" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -1498,6 +1558,7 @@ navigation_polygon = SubResource("NavigationPolygon_w3od7")
 [node name="TileMap" type="TileMap" parent="CanvasModulate/NavigationRegion2D" groups=["wall"]]
 visibility_layer = 3
 texture_filter = 1
+material = SubResource("CanvasItemMaterial_tjc36")
 scale = Vector2(2.00161, 2.00161)
 tile_set = SubResource("TileSet_83j7u")
 format = 2
@@ -1610,10 +1671,14 @@ vertical_alignment = 1
 
 [node name="Battery" type="TextureProgressBar" parent="CanvasLayer2"]
 texture_filter = 1
-offset_left = 4.0
-offset_top = 244.0
-offset_right = 20.0
-offset_bottom = 260.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -52.0
+offset_right = 28.0
+offset_bottom = -36.0
+grow_vertical = 0
 scale = Vector2(4.40273, 3.923)
 value = 100.0
 texture_over = ExtResource("4_x3dfx")
@@ -1623,6 +1688,44 @@ texture_progress = ExtResource("5_gl1a2")
 libraries = {
 "": SubResource("AnimationLibrary_r5w4h")
 }
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -770.0
+offset_top = -443.0
+offset_right = -332.0
+offset_bottom = -225.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.53924, 3.9291)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ya503")
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VHS" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_spnw8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="scoreManager" type="Node" parent="." groups=["manager"]]
 script = ExtResource("4_a0h4o")
@@ -1636,6 +1739,7 @@ one_shot = true
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+autostart = true
 
 [connection signal="exit" from="scoreManager" to="CanvasModulate" method="_on_score_manager_exit"]
 [connection signal="timeout" from="Timer" to="battery_manager" method="_on_timer_timeout"]

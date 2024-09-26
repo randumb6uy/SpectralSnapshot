@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dug84petn4f6p"]
+[gd_scene load_steps=4 format=3 uid="uid://cnlj4suw74k0l"]
 
-[ext_resource type="Texture2D" uid="uid://caqbjbbo4p362" path="res://sprites/wall.png" id="1_dcfgb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8w7b8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1gkf"]
 size = Vector2(16, 16)
@@ -12,7 +12,7 @@ polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_dcfgb")
+texture = SubResource("CompressedTexture2D_8w7b8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f1gkf")

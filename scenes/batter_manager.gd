@@ -1,5 +1,6 @@
 extends Node
 @onready var canvas_modulate = $"../CanvasModulate"
+@onready var screen_anim = $"../screen_anim"
 
 var light
 @onready var battery = $"../CanvasLayer2/Battery"
@@ -28,12 +29,12 @@ func _process(delta):
 		battery.value = 30
 		light_status = Global.battery_setup[3]
 		set_light(light_status)
+		animation_player.play("blink")
 	elif Global.power <= 0 :
 		print("no light")
 		light.energy = 0
 		battery.value = 0
 		no_light.emit()
-		animation_player.play("blink")
 		canvas_modulate.color = Color(0,0,0)
 	
 func _on_timer_timeout():
@@ -42,7 +43,7 @@ func _on_timer_timeout():
 		Global.power -= Global.power_consumtion
 		print(Global.power)
 	else:
-		Global.power = 0
+		
 		print(Global.power)
 	timer.start()
 

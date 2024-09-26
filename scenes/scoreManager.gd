@@ -5,6 +5,7 @@ var enemies_def = 0
 var enem_no
 var enems 
 var rays
+@onready var screen_anim = $"../screen_anim"
 signal exit
 func _ready():
 	enems = enemies.get_children()
@@ -20,3 +21,12 @@ func on_sight(enemy):
 		holder.enemy_count.text = "Ghosts Found " + str(enemies_def)+ "/" + str(holder.enemies.get_child_count())
 		enems.erase(enemy)
 	
+func _process(delta):
+	if Global.power < 0:
+		Global.power = 0
+		screen_anim.play("game_over")
+		#while Engine.time_scale == 0:
+			#Engine.time_scale -= 0.01
+		#Engine.time_scale = 0
+		await screen_anim.animation_finished
+		set_process_input(false)

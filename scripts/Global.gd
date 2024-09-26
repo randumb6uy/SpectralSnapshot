@@ -11,6 +11,7 @@ var is_sneaking = false
 var enemy_pool : Array[CharacterBody2D]
 var started = false
 var power = 80
+@export var power_snap_consump :int
 @export var power_consumtion : int
 var battery_setup = [[8,30],[7,20],[6,10],[5,5] ]
 @export_range(0.0 , 1.0) var monster_room_chance : float

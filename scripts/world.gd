@@ -22,11 +22,14 @@ var passable = false
 @onready var battery = $"../CanvasLayer2/Battery"
 @onready var candles = $candles
 var walker
+@onready var timer = $"../Timer2"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process_input(false)
 	Global.power = Global.max_power
 	Global.started = false
+	floor_level.text = "floor " + str(Global.floor)
 	passable = false
 	enemy_pool = enemies.get_children()
 	color_rect.visible = true
@@ -38,13 +41,15 @@ func _ready():
 	floor_level.visible = true
 	battery.visible = true
 	animation_player.play("fade_out")
+	Global.floor += 1
+	floor_level.text = "floor " + str(Global.floor)
 	await animation_player.animation_finished
 	color_rect.visible = false
 	set_process_input(true)
+	
 func generate_level():
 	room_ = floor_sizes.pick_random()
 	walker = Walker.new(Vector2(20,16),borders)
-	print(room_)
 	var map = walker.walk(room_[0])
 	var exit = exitDoor.instantiate()
 	add_child(exit)
@@ -72,12 +77,12 @@ func generate_level():
 		#enemies.add_child(enem)
 		#enem.position = room["position"] * 64
 	player = Player.instantiate()
+	place_tresure_in_room(SOUL , walker.rooms_with_enemy,candles)
 	place_obj_in_room(Enemy , walker.place_monsters(),enemies)
-	place_obj_in_room(SOUL , walker.place_treasure(),candles)
 	add_child(player)
 	player.position = map.front() * 64
 	#move_child(player, 0)
-	walker.queue_free()
+	#walker.queue_free()
 	var cells = []
 	for location in map:
 		var veci = Vector2i(location.x,location.y)
@@ -90,11 +95,9 @@ func generate_level():
 func on_leaving_level():
 	#animation_player.play("fade_in")
 	#await animation_player.animation_finished
-	print("oga" + str(passable))
+	pass
 
 func reload_level():
-	Global.floor += 1
-	floor_level.text = "floor " + str(Global.floor)
 	get_tree().reload_current_scene()
 
 func _on_score_manager_exit():
@@ -103,14 +106,22 @@ func _on_score_manager_exit():
 func place_obj_in_room(obj : PackedScene , rooms : Array , parent : Node):
 	for room in rooms:
 		#var player = get_tree().get_first_node_in_group("player")
-		
+		print(obj)
 		if (room.position * 64).distance_to(player.global_position) >= 1024 : 
 			var object = obj.instantiate()
-			print((room.position * 64).distance_to(player.global_position))
 			parent.add_child(object)
 			object.global_position = room.position * 64 + Vector2(randf_range(-64 , 64) , randf_range(-64 , 64))
-			print(room)
-
-
+			
+func place_tresure_in_room(obj : PackedScene , rooms : Array , parent : Node):
+	for room in rooms:
+		#var player = get_tree().get_first_node_in_group("player")
+		print(obj)
+		if (room.position * 64).distance_to(player.global_position) >= 1024 : 
+			if randf() < Global.monster_room_chance:
+				var object = obj.instantiate()
+				parent.add_child(object)
+				object.global_position = room.position * 64 + Vector2(randf_range(-64 , 64) , randf_range(-64 , 64))
 func _on_timer_2_timeout():
-	place_obj_in_room(SOUL , walker.place_treasure(),candles)
+	print("mmhhhehhheh")
+	place_tresure_in_room(SOUL , walker.rooms_with_enemy,candles)
+	timer.start()

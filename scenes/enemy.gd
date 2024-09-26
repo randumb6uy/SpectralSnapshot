@@ -40,17 +40,16 @@ func _on_timer_timeout():
 		navigation_agent.target_position = target.global_position +  Vector2(randf_range(-64 , 64) , randf_range(-64 , 64))
 		p_target = position
 	else:
-		navigation_agent.target_position = 3 * Vector2(randf_range(-64 , 64) , randf_range(-64 , 64)) + position
-
+		var tar_pos = 3 * Vector2(randf_range(-64 , 64) , randf_range(-64 , 64)) + position
+		
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player") :
 		target = body
 		timer.wait_time = 0.5 
 func _on_area_2d_2_body_exited(body):
 	target = null
-	timer.wait_time = 1 + randf_range(0,3)
+	timer.wait_time = 1 + randf_range(-1,2)
 
 
-
-
-		
+func _on_wall_check_body_entered(body):
+	pass # Replace with function body.

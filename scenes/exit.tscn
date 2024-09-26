@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb8pw4jd8nlux"]
+[gd_scene load_steps=6 format=3 uid="uid://bb8pw4jd8nlux"]
 
 [ext_resource type="Texture2D" uid="uid://d1c8pailrub31" path="res://sprites/ladder.png" id="1_2hbyh"]
 [ext_resource type="Script" path="res://scenes/exitDoor.gd" id="1_8qjdk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m01ti"]
 size = Vector2(16, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5k30l"]
+light_mode = 2
+
+[sub_resource type="Curve" id="Curve_sootf"]
+_data = [Vector2(0, 0.272094), 0.0, 0.0, 0, 0, Vector2(0.249169, 0.862288), 0.0, 0.0, 0, 0, Vector2(0.513289, 0.862288), 0.0, 0.0, 0, 0, Vector2(1, 0.26816), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="Area2D" type="Area2D"]
 scale = Vector2(3.66512, 3.66512)
@@ -16,5 +23,69 @@ texture = ExtResource("1_2hbyh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m01ti")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5k30l")
+position = Vector2(7.91243, -7.91243)
+scale = Vector2(1.11866, 1.41007)
+amount = 40
+lifetime = 0.6
+speed_scale = 0.7
+lifetime_randomness = 0.63
+emission_shape = 1
+emission_sphere_radius = 3.65
+spread = 180.0
+gravity = Vector2(0, -200)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_curve = SubResource("Curve_sootf")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5k30l")
+position = Vector2(7.91243, 8.18527)
+scale = Vector2(1.11866, 1.41007)
+amount = 40
+lifetime = 0.6
+speed_scale = 0.7
+lifetime_randomness = 0.63
+emission_shape = 1
+emission_sphere_radius = 3.65
+spread = 180.0
+gravity = Vector2(0, -200)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_curve = SubResource("Curve_sootf")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5k30l")
+position = Vector2(-8.18527, 8.18527)
+scale = Vector2(1.11866, 1.41007)
+amount = 40
+lifetime = 0.6
+speed_scale = 0.7
+lifetime_randomness = 0.63
+emission_shape = 1
+emission_sphere_radius = 3.65
+spread = 180.0
+gravity = Vector2(0, -200)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_curve = SubResource("Curve_sootf")
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5k30l")
+position = Vector2(-8.18527, -7.91243)
+scale = Vector2(1.11866, 1.41007)
+amount = 40
+lifetime = 0.6
+speed_scale = 0.7
+lifetime_randomness = 0.63
+emission_shape = 1
+emission_sphere_radius = 3.65
+spread = 180.0
+gravity = Vector2(0, -200)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_curve = SubResource("Curve_sootf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

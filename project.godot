@@ -22,6 +22,7 @@ Global="*res://scenes/Global.tscn"
 
 window/size/viewport_width=400
 window/size/viewport_height=300
+window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
 
 [input]

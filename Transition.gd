@@ -8,7 +8,7 @@ var player
 
 func _ready():
 	animation_player.animation_finished.connect(_on_animation_finished)
-	#animation_player.play("fade_to_normal_long")
+	#nimation_player.play("fade_to_normal_long")
 func transition():
 	print("jjkgl")
 	animation_player.play("fade_to_black")

@@ -7,16 +7,17 @@ var rays = []
 @onready var light = $"../Node2D/PointLight2D"
 @onready var flash_eff = $"../Node2D/flash_eff"
 func _ready():
-	light.energy = Global.initial_light_brightness
+	light.energy = Global.initial_light_brightness 
 	rays = raygroup.get_children()
 	print(rays)
 	screen_anim = get_tree().get_first_node_in_group("screen_anim")
 	print(screen_anim)
 func _physics_process(delta):
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("fire")&& Global.power > 0:
 		var v = light.energy
 		print("j")
 		light.energy = 40
+		Global.power -= Global.power_snap_consump
 		screen_anim.play("snap")
 		flash_eff.emitting = true
 		await screen_anim.animation_finished

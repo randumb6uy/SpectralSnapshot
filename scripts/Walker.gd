@@ -87,5 +87,6 @@ func place_treasure():
 		if treasure_rooms.size() <= Global.max_treasures:
 			if randf() < Global.treasure_room_chances: 
 				treasure_rooms.append(room)
-				rooms_with_enemy.erase(room)
+				#rooms_with_enemy.erase(room)
+	treasure_rooms.shuffle()
 	return treasure_rooms
